@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本地提醒器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="titlebar">
+        <div class="titlebar-title">本地提醒器</div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <input 
+                type="text" 
+                id="reminderInput" 
+                class="input-field" 
+                placeholder="请输入提醒内容..."
+                autocomplete="off"
+            >
+            <button id="addButton" class="add-button">
+                添加提醒
+            </button>
+        </div>
+    </div>
+    
+    <script src="renderer.js"></script>
+</body>
+</html> 
