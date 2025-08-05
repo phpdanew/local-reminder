@@ -112,11 +112,13 @@ local-remider/
 
 ### 服务器配置
 
-在 `server.py` 中可以修改以下配置：
+在 `server/server.py` 中可以修改以下配置：
 
 ```python
 PORT = 3333  # 服务器端口
 ```
+
+默认写入到server/plan.xlsx中，先将plan.example.xlsx复制并重命名为plan.xlsx
 
 ### 应用配置
 

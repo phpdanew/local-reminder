@@ -6,11 +6,58 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^37.2.5"
+    "electron": "^37.2.5",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.localreminder.app",
+    "productName": "本地提醒器",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "index.js",
+      "index.html",
+      "styles.css",
+      "renderer.js",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "assets/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ]
+    },
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "linux": {
+      "icon": "assets/icon.png",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        }
+      ]
+    }
   }
 }

@@ -54,7 +54,8 @@ function addReminder() {
     // 准备请求数据
     const requestData = {
         text: text,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        delay_minutes: 30  // 默认30分钟延时
     };
     
     // 发送HTTP请求
@@ -72,8 +73,8 @@ function addReminder() {
         return response.json();
     })
     .then(data => {
-        console.log('提醒已发送:', data);
-        showSuccessMessage('提醒已发送！');
+        console.log('提醒已设置:', data);
+        showSuccessMessage(`提醒已设置，${data.delay_minutes}分钟后通知！`);
         
         // 清空输入框
         reminderInput.value = '';

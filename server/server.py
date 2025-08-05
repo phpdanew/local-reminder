@@ -2,10 +2,13 @@
 import http.server
 import socketserver
 import json
-import urllib.parse
 from datetime import datetime
-from pync import Notifier
-import os
+from logic import ReminderLogic
+
+# 创建提醒逻辑实例，使用Excel写入器
+from logic import ReminderLogic, ExcelWriter
+excel_writer = ExcelWriter('plan.xlsx')
+reminder_logic = ReminderLogic(writer=excel_writer)
 
 class ReminderHandler(http.server.BaseHTTPRequestHandler):
     def do_POST(self):
@@ -18,38 +21,14 @@ class ReminderHandler(http.server.BaseHTTPRequestHandler):
                 # 解析JSON数据
                 data = json.loads(post_data.decode('utf-8'))
                 
-                if not data or 'text' not in data:
-                    self.send_error_response(400, '缺少文本内容')
-                    return
+                # 使用逻辑模块处理请求
+                result = reminder_logic.process_reminder_request(data)
                 
-                text = data['text']
-                timestamp = data.get('timestamp', datetime.now().isoformat())
-                
-                # 使用pync发送系统通知
-                Notifier.notify(
-                    text,
-                    title='本地提醒器',
-                    subtitle=f'时间: {timestamp}',
-                    sound='default'
-                )
-                
-                # 记录到日志文件
-                log_entry = f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {text}\n"
-                with open('reminders.log', 'a', encoding='utf-8') as f:
-                    f.write(log_entry)
-                
-                print(f"已发送通知: {text}")
-                
-                # 返回成功响应
-                response_data = {
-                    'success': True,
-                    'message': '提醒已发送',
-                    'text': text,
-                    'timestamp': timestamp
-                }
-                
-                self.send_success_response(response_data)
-                
+                if result['success']:
+                    self.send_success_response(result)
+                else:
+                    self.send_error_response(result['status_code'], result['error'])
+                    
             except json.JSONDecodeError:
                 self.send_error_response(400, '无效的JSON格式')
             except Exception as e:
@@ -65,6 +44,10 @@ class ReminderHandler(http.server.BaseHTTPRequestHandler):
                 'message': '服务器运行正常',
                 'timestamp': datetime.now().isoformat()
             }
+            self.send_success_response(response_data)
+        elif self.path == '/status':
+            # 使用逻辑模块获取状态
+            response_data = reminder_logic.get_status()
             self.send_success_response(response_data)
         else:
             self.send_error_response(404, '页面不存在')
@@ -112,6 +95,7 @@ def main():
     print(f"服务器地址: http://localhost:{PORT}")
     print(f"API接口: http://localhost:{PORT}/api/reminders")
     print("健康检查: http://localhost:3333/health")
+    print("状态检查: http://localhost:3333/status")
     print("按 Ctrl+C 停止服务器")
     print("-" * 50)
     
@@ -121,6 +105,8 @@ def main():
             httpd.serve_forever()
     except KeyboardInterrupt:
         print("\n服务器已停止")
+        # 清理定时任务
+        reminder_logic.cleanup()
     except Exception as e:
         print(f"启动服务器时出错: {e}")
 
