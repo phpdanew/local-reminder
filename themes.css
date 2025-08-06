@@ -1,0 +1,440 @@
+/* ================================================
+   主题样式定义
+   ================================================ */
+
+/* 通用基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.theme-base {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.theme-base .titlebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    -webkit-app-region: drag;
+    transition: all 0.3s ease;
+}
+
+.theme-base .titlebar-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.theme-base .container {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 55px;
+}
+
+.theme-base .card {
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    -webkit-app-region: no-drag;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.theme-base .input-field {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    -webkit-app-region: no-drag;
+    border: 2px solid;
+    outline: none;
+    font-family: inherit;
+}
+
+.theme-base .add-button {
+    width: auto;
+    min-width: 120px;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+    -webkit-app-region: no-drag;
+    border: none;
+    outline: none;
+}
+
+/* ================================================
+   主题 1: 极客风格 (Hacker)
+   ================================================ */
+.theme-hacker {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    background: #0a0a0a;
+    color: #00ff00;
+}
+
+.theme-hacker .titlebar {
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+}
+
+.theme-hacker .titlebar-title {
+    color: #00ff00;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.theme-hacker .card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.1);
+}
+
+.theme-hacker .input-field {
+    background: #0a0a0a;
+    color: #00ff00;
+    border-color: #333;
+    border-radius: 2px;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.theme-hacker .input-field:focus {
+    border-color: #00ff00;
+    box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.2);
+}
+
+.theme-hacker .input-field::placeholder {
+    color: #666;
+}
+
+.theme-hacker .add-button {
+    background: #0a0a0a;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.theme-hacker .add-button:hover {
+    background: #00ff00;
+    color: #0a0a0a;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* ================================================
+   主题 2: 现代简约 (Modern)
+   ================================================ */
+.theme-modern {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #2d3748;
+}
+
+.theme-modern .titlebar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+.theme-modern .titlebar-title {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.theme-modern .card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.theme-modern .input-field {
+    background: white;
+    color: #2d3748;
+    border-color: #e2e8f0;
+}
+
+.theme-modern .input-field:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.theme-modern .input-field::placeholder {
+    color: #a0aec0;
+}
+
+.theme-modern .add-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.theme-modern .add-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* ================================================
+   主题 3: 深色优雅 (Dark)
+   ================================================ */
+.theme-dark {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #ecf0f1;
+}
+
+.theme-dark .titlebar {
+    background: rgba(44, 62, 80, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-dark .titlebar-title {
+    color: #ecf0f1;
+    font-weight: 600;
+}
+
+.theme-dark .card {
+    background: rgba(52, 73, 94, 0.9);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-dark .input-field {
+    background: rgba(44, 62, 80, 0.8);
+    color: #ecf0f1;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.theme-dark .input-field:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.theme-dark .input-field::placeholder {
+    color: #95a5a6;
+}
+
+.theme-dark .add-button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.theme-dark .add-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+}
+
+/* ================================================
+   主题 4: 明亮清新 (Light)
+   ================================================ */
+.theme-light {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    color: #2d3748;
+}
+
+.theme-light .titlebar {
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(116, 185, 255, 0.3);
+    box-shadow: 0 2px 20px rgba(116, 185, 255, 0.1);
+}
+
+.theme-light .titlebar-title {
+    color: #0984e3;
+    font-weight: 700;
+}
+
+.theme-light .card {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 15px 35px rgba(116, 185, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.theme-light .input-field {
+    background: white;
+    color: #2d3748;
+    border-color: #ddd;
+}
+
+.theme-light .input-field:focus {
+    border-color: #74b9ff;
+    box-shadow: 0 0 0 3px rgba(116, 185, 255, 0.15);
+}
+
+.theme-light .input-field::placeholder {
+    color: #999;
+}
+
+.theme-light .add-button {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    color: white;
+    box-shadow: 0 4px 15px rgba(116, 185, 255, 0.3);
+}
+
+.theme-light .add-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(116, 185, 255, 0.4);
+}
+
+/* ================================================
+   主题 5: 彩虹渐变 (Rainbow)
+   ================================================ */
+.theme-rainbow {
+    background: linear-gradient(45deg, #ff6b6b, #ffa500, #ffff00, #32cd32, #1e90ff, #9370db);
+    background-size: 400% 400%;
+    animation: rainbowShift 8s ease infinite;
+    color: white;
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.theme-rainbow .titlebar {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-rainbow .titlebar-title {
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.theme-rainbow .card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.theme-rainbow .input-field {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.theme-rainbow .input-field:focus {
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.theme-rainbow .input-field::placeholder {
+    color: #666;
+}
+
+.theme-rainbow .add-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.theme-rainbow .add-button:hover {
+    background: white;
+    color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================================
+   通用消息样式
+   ================================================ */
+.message {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 2000;
+    animation: slideDown 0.3s ease;
+}
+
+.success-message {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+}
+
+.error-message {
+    background: linear-gradient(135deg, #f56565, #e53e3e);
+    color: white;
+    box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .theme-base .card {
+        padding: 24px 20px;
+    }
+    
+    .theme-base .container {
+        max-width: 90%;
+        margin-top: 50px;
+    }
+    
+    .theme-base .titlebar {
+        height: 32px;
+    }
+    
+    .theme-base .titlebar-title {
+        font-size: 14px;
+    }
+    
+    .theme-base .input-field {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .theme-base .add-button {
+        padding: 12px 20px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+}

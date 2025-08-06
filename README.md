@@ -8,11 +8,11 @@
 
 ## ✨ 功能特性
 
-- 🎨 **现代化界面设计** - 采用渐变色彩和流畅动画效果
-- ⌨️ **快捷操作** - 支持回车键快速添加提醒
+- 🎨 **5套精美主题** - 极客、现代、深色、明亮、彩虹风格任选
+- ⌨️ **快捷操作** - 支持回车键快速添加，Ctrl+T切换主题
 - 🌐 **RESTful API** - 提供标准化的HTTP接口
 - 📱 **响应式设计** - 适配不同屏幕尺寸
-- 🔧 **模块化架构** - 前后端分离，易于扩展和维护
+- 🔧 **智能配置** - 自动保存窗口位置、主题选择等个人设置
 - 🚀 **跨平台支持** - 支持 macOS、Windows 和 Linux
 - 💾 **通过自定义接口实现数据持久化和系统通知以及任何想要的功能
 
@@ -99,35 +99,73 @@ Content-Type: application/json
 local-remider/
 ├── 📄 index.js              # Electron 主进程文件
 ├── 📄 index.html            # 主页面HTML文件
-├── 📄 styles.css            # 样式文件
 ├── 📄 renderer.js           # 渲染进程脚本
-├── 📄 server.py             # Python后端服务器
+├── 📄 themes.css            # 主题样式文件
+├── 📄 theme-selector.html   # 主题选择器页面
+├── 📄 config.js             # 配置管理器
+├── 📄 config.example.json   # 配置示例文件
+├── 📄 reminder-config.json  # 实际配置文件(运行时生成)
+├── 📄 server/
+│   ├── server.py           # Python后端服务器
+│   └── plan.xlsx           # 数据存储文件
 ├── 📄 package.json          # 项目配置和依赖
-├── 📄 package-lock.json     # 依赖锁定文件
-├── 📄 reminders.log         # 提醒日志文件
 └── 📄 README.md             # 项目说明文档
 ```
 
+## 🎨 主题系统
+
+应用支持5种精美主题，首次启动时会显示主题选择器：
+
+- 🔥 **极客风格** (`hacker`) - 黑色+绿色终端风格
+- 🌟 **现代简约** (`modern`) - 蓝紫渐变，默认主题
+- 🌙 **深色优雅** (`dark`) - 深蓝灰商务风格  
+- ☀️ **明亮清新** (`light`) - 蓝色系明亮风格
+- 🌈 **彩虹渐变** (`rainbow`) - 动态彩虹背景
+
+### 主题切换
+
+- **快捷键**: `Ctrl/Cmd + T` 重新打开主题选择器
+- **菜单**: 应用 → 选择主题...
+
 ## 🔧 配置说明
+
+### 配置文件
+
+应用会在根目录自动生成 `reminder-config.json` 配置文件：
+
+```json
+{
+    "selectedTheme": "modern",        // 当前主题
+    "windowSettings": {              // 窗口设置
+        "width": 400,
+        "height": 300,
+        "x": 100,
+        "y": 100
+    },
+    "reminders": {                   // 提醒设置
+        "defaultDelay": 30,          // 默认延迟(分钟)
+        "sound": true,               // 声音开关
+        "notification": true         // 通知开关
+    },
+    "server": {                      // 服务器设置
+        "port": 3333,               // 端口
+        "autoStart": true           // 自动启动
+    }
+}
+```
+
+### 配置管理
+
+- **打开配置**: 菜单 → 应用 → 打开配置文件
+- **重置配置**: 菜单 → 应用 → 重置配置
+- **手动编辑**: 直接编辑 `reminder-config.json` 文件，重启生效
 
 ### 服务器配置
 
-在 `server/server.py` 中可以修改以下配置：
+在 `server/server.py` 中可以修改服务器端口：
 
 ```python
 PORT = 3333  # 服务器端口
 ```
 
 默认写入到server/plan.xlsx中，先将plan.example.xlsx复制并重命名为plan.xlsx
-
-### 应用配置
-
-在 `package.json` 中可以修改应用信息：
-
-```json
-{
-  "name": "local-remider",
-  "version": "1.0.0",
-  "description": "本地提醒器应用"
-}
-```

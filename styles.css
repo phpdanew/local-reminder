@@ -5,14 +5,16 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
+    background: #0a0a0a;
+    color: #00ff00;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
     margin: 0;
+    overflow: hidden;
 }
 
 /* 标题栏样式 */
@@ -21,108 +23,110 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+    height: 32px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     -webkit-app-region: drag;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
 
 .titlebar-title {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    color: #00ff00;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
-
-
 
 /* 让内容区域避开标题栏 */
 .container {
     width: 100%;
-    max-width: 350px;
-    margin-top: 55px;
-}
-
-.container {
-    width: 100%;
-    max-width: 350px;
+    max-width: 400px;
+    margin-top: 52px;
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(102, 126, 234, 0.1);
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     -webkit-app-region: no-drag;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00ff00, #00cc00);
 }
 
 .input-field {
     width: 100%;
-    padding: 15px 20px;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: white;
-    color: #2d3748;
+    padding: 12px 16px;
+    border: 1px solid #333;
+    border-radius: 2px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    background: #0a0a0a;
+    color: #00ff00;
     -webkit-app-region: no-drag;
 }
 
 .input-field:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    transform: translateY(-2px);
+    border-color: #00ff00;
+    box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.2);
 }
 
 .input-field::placeholder {
-    color: #a0aec0;
+    color: #666;
 }
 
 .add-button {
     width: auto;
-    min-width: 120px;
-    padding: 15px 25px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
+    min-width: 100px;
+    padding: 12px 20px;
+    background: #0a0a0a;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: inherit;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: all 0.2s ease;
     align-self: flex-end;
     -webkit-app-region: no-drag;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .add-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: #00ff00;
+    color: #0a0a0a;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
 .add-button:active {
-    transform: translateY(0);
+    transform: translateY(1px);
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
     .card {
-        padding: 30px 20px;
+        padding: 20px 16px;
     }
 }
 
@@ -132,29 +136,32 @@ body {
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 400;
     z-index: 2000;
     animation: slideDown 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid;
+    font-family: inherit;
 }
 
 .success-message {
-    background: linear-gradient(135deg, #48bb78, #38a169);
-    color: white;
+    background: #0a0a0a;
+    color: #00ff00;
+    border-color: #00ff00;
 }
 
 .error-message {
-    background: linear-gradient(135deg, #f56565, #e53e3e);
-    color: white;
+    background: #0a0a0a;
+    color: #ff4444;
+    border-color: #ff4444;
 }
 
 @keyframes slideDown {
     from {
         opacity: 0;
-        transform: translateX(-50%) translateY(-20px);
+        transform: translateX(-50%) translateY(-10px);
     }
     to {
         opacity: 1;
@@ -164,19 +171,46 @@ body {
 
 /* 滚动条样式 */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
+    background: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 4px;
+    background: #333;
+    border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
+    background: #00ff00;
+}
+
+/* 终端风格的闪烁光标效果 */
+.input-field:focus::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: #00ff00;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* 极客风格的装饰元素 */
+.card::after {
+    content: '>';
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: #666;
+    font-size: 12px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 } 

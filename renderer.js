@@ -1,6 +1,55 @@
 // 获取DOM元素
 let reminderInput, addButton;
 
+// 主题管理
+async function initializeTheme() {
+    let savedTheme = 'modern'; // 默认主题
+    
+    // 尝试从Electron配置获取主题
+    if (typeof require !== 'undefined') {
+        try {
+            const { ipcRenderer } = require('electron');
+            savedTheme = await ipcRenderer.invoke('get-selected-theme');
+            console.log('从配置加载主题:', savedTheme);
+        } catch (error) {
+            console.log('无法读取Electron配置，使用默认主题:', error);
+        }
+    }
+    
+    // 如果仍然没有主题，尝试从localStorage获取
+    if (!savedTheme) {
+        savedTheme = localStorage.getItem('selectedTheme') || 'modern';
+    }
+    
+    applyTheme(savedTheme);
+    
+    // 监听主题变化事件
+    if (typeof require !== 'undefined') {
+        try {
+            const { ipcRenderer } = require('electron');
+            ipcRenderer.on('theme-changed', (event, newTheme) => {
+                console.log('收到主题变化事件:', newTheme);
+                applyTheme(newTheme);
+            });
+        } catch (error) {
+            console.log('无法设置主题变化监听器:', error);
+        }
+    }
+}
+
+function applyTheme(themeName) {
+    // 移除所有主题类
+    document.body.className = 'theme-base';
+    
+    // 添加选定的主题类
+    document.body.classList.add(`theme-${themeName}`);
+    
+    // 保存主题选择
+    localStorage.setItem('selectedTheme', themeName);
+    
+    console.log(`应用主题: ${themeName}`);
+}
+
 // 确保DOM元素存在
 function initializeElements() {
     reminderInput = document.getElementById('reminderInput');
@@ -135,8 +184,13 @@ style.textContent = `
 document.head.appendChild(style);
 
 // 页面加载时初始化
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     console.log('页面加载完成');
+    
+    // 初始化主题
+    await initializeTheme();
+    
+    // 初始化元素
     initializeElements();
     
     // 聚焦到输入框

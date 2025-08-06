@@ -3,3 +3,6 @@
 __pycache__
 .DS_Store
 /server/plan.xlsx
+
+# 配置文件
+reminder-config.json

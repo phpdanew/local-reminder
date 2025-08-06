@@ -1,0 +1,32 @@
+{
+    "_comment": "这是本地提醒器的配置文件示例",
+    "_note": "实际配置文件名为 reminder-config.json，位于应用根目录下",
+    
+    "selectedTheme": "modern",
+    "firstLaunch": false,
+    
+    "windowSettings": {
+        "width": 400,
+        "height": 300,
+        "x": null,
+        "y": null
+    },
+    
+    "themeSettings": {
+        "autoDetectSystemTheme": false,
+        "customThemes": []
+    },
+    
+    "reminders": {
+        "defaultDelay": 30,
+        "sound": true,
+        "notification": true
+    },
+    
+    "server": {
+        "port": 3333,
+        "autoStart": true
+    },
+    
+    "version": "1.0.0"
+}
